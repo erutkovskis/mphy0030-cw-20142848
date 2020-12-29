@@ -1,4 +1,4 @@
-function simple_image_read(FilepathToRead)
+function [intensity, voxels] = simple_image_read(FilepathToRead)
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -11,11 +11,12 @@ if ~ischar(FilepathToRead)
 end
 
 % Implementation
-% FilepathToRead = '../../data/image.sim'; % test filepath
 FileToRead = fopen(FilepathToRead,'r'); % open test file in r mode
+ImgSize = fread(FileToRead,[1,3]);
 intensity = fread(FileToRead,[224,224*30],'*int16'); % read intensity values into 2D colsx(rows*depth) matrix in int16
 intensity = reshape(intensity,[224,224,30]); % reshape 2D matrix into 3D
-% voxels = fread(,'*single');
+voxels = fread(FileToRead,[1,3],'*single');
+
 fclose(FileToRead);
 
 end
