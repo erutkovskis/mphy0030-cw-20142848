@@ -1,7 +1,7 @@
 function f = quadratic_polynomial(a,x)
 % f = quadratic_polynomial(a,x);
 % Function outputs a solution for a multivariate polynomial of degree 2 
-% for three variables (f,a,x).
+% for three variables.
 
 % Error check.
 if nargin ~= 2

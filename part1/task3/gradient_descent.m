@@ -1,27 +1,33 @@
-function x = gradient_descent(multivar_f,...
-    init_val, alpha, max_iter, toler, gradient_f)
+function [x,NumIter] = gradient_descent(multivar_f,...
+    x, alpha, max_iter, toler, gradient_f,a)
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
 
-x = init_val;
-f = @multivar_f;
-g = @gradient_f;
-
-% Test values
-a = rand(1,10);
-x = rand(1,3);
 %% Main algorithm
-grad = g(f(a,x), grid);
-NumIter = 1;
 
-while NumIter <= max_iter    
-    xnew = x - alpha*grad;
+NumIter = 1;
+x_new = rand(1,3);
+
+while NumIter <= max_iter && (multivar_f(a,x)-multivar_f(a,x_new)) >= toler
+    grad = gradient_f(multivar_f,a,x);
+    x_new = x - alpha*grad;
+    x = x_new;
     NumIter = NumIter + 1;
-    x = xnew;
-    if (f(a,x)-f(a,xnew))<toler
-        break
-    end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 %% Trash
 % Feature normalisation
