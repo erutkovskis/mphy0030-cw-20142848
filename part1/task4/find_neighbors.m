@@ -7,17 +7,17 @@ triangles_num = size(triangles,1);
 %P = vertices;
 Tri = triangles;
 
-neighbors = cell(triangles_num);
+% neighbors = cell(triangles_num);
+neighbors = [];
 
 for triangle = 1:triangles_num
     if ismember(vertex,Tri(triangle,:))
         for ii = 1:3
-            if Tri(triangle,ii) ~= vertex && ~ismember(Tri(triangle,ii),neighbors(vertex))
-                neighbors(vertex) = Tri(triangle,ii);
+            if Tri(triangle,ii) ~= vertex && ~ismember(Tri(triangle,ii),neighbors)
+                neighbors(end+1) = Tri(triangle,ii);
             end
         end
     end
 end
-
 
 end
