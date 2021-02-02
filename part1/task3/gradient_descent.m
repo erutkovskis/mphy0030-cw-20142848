@@ -6,13 +6,14 @@ function [x,NumIter] = gradient_descent(multivar_f,...
 %% Main algorithm
 
 NumIter = 1;
-x_new = rand(1,3);
+delta = toler+1;
 
-while NumIter <= max_iter && (multivar_f(a,x)-multivar_f(a,x_new)) >= toler
+while NumIter <= max_iter && delta >= toler
     grad = gradient_f(multivar_f,a,x);
     x_new = x - alpha*grad;
-    x = x_new;
     NumIter = NumIter + 1;
+    delta = (multivar_f(a,x)-multivar_f(a,x_new));
+    x = x_new;
 end
 
 

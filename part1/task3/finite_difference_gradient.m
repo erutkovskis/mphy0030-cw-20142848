@@ -5,9 +5,9 @@ function derivatives = finite_difference_gradient(f,a,x)
 %   function) for each input element x = [x1,x2,x3].
 
 
-dx1 = 0.001;
-dx2 = 0.001;
-dx3 = 0.001;
+dx1 = 0.000001;
+dx2 = 0.000001;
+dx3 = 0.000001;
 deriv_x1 = (f(a,[x(1)+dx1,x(2),x(3)])-f(a,[x(1),x(2),x(3)]))/dx1;
 deriv_x2 = (f(a,[x(1),x(2)+dx2,x(3)])-f(a,[x(1),x(2),x(3)]))/dx2;
 deriv_x3 = (f(a,[x(1),x(2),x(3)+dx3])-f(a,[x(1),x(2),x(3)]))/dx3;

@@ -2,18 +2,21 @@
 
 %a = [0.8147,0.9058,0.1270,0.9134,0.6324,0.0975,0.2785,0.5469,0.9575,0.9649];
 %x = [0.1576,0.9706,0.9572];
-a = rand(1,10);
-x = rand(1,3);
-f = @quadratic_polynomial;
-result = f(a,x);
+% a = randn(1,10); % random coefficients/parameters
+% x = randn(1,3); % random variables
+a = [1 2 3 4 5 6 7 8 9 10];
+x = [1 3 5];
+f = @quadratic_polynomial; % polynomial function handle
+result = f(a,x); % compute the quadratic polynomial
 
-%% Calculate derivatives
+%% Calculate derivatives of the quadratic polynomial
 
 derivatives = finite_difference_gradient(f,a,x);
 
 %% Perform gradient descent
-g = @finite_difference_gradient;
-alpha = 0.001; max_iter = 100000; tolerance = 0.01;
+
+g = @finite_difference_gradient; % derivative function handle
+alpha = 10^-6; max_iter = 1000000; tolerance = 10^-3;
 [x_optimised, numiter] = gradient_descent(f,x,alpha,max_iter,tolerance,g,a);
 %% gradient descent test
 % var1 = ;
