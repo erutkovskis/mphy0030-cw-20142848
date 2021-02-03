@@ -21,19 +21,19 @@ if nargin < 4
     mu = -1.02*lambda;
 end
 
-% Find first-order neighbors
+% Find first-order neighbors using custom algorithm
 neighbors = find_neighbors(vertices,triangles);
 
 vertice_num = size(vertices,1);
 
 % Smooth the surface
-for iter = 1:num_iter
-    for vertex = 1:vertice_num
+for iter = 1:num_iter % smooth according to the specified iteration no
+    for vertex = 1:vertice_num % scan all vertices
         for dim = 1:3 % apply the mesh smooting to x,y,z
             vertices(vertex,dim) = vertices(vertex,dim) + lambda * ...
-                (sum(1/length(vertices(neighbors{vertex},1))*(vertices(neighbors{vertex},dim)-vertices(vertex,dim)))); 
+                (sum(1/length(vertices(neighbors{vertex},1))*(vertices(neighbors{vertex},dim)-vertices(vertex,dim)))); % smooth the vertice coordinate
             vertices(vertex,dim) = vertices(vertex,dim) + mu * ...
-                (sum(1/length(vertices(neighbors{vertex},1))*(vertices(neighbors{vertex},dim)-vertices(vertex,dim))));
+                (sum(1/length(vertices(neighbors{vertex},1))*(vertices(neighbors{vertex},dim)-vertices(vertex,dim)))); % adjust with mu
         end
     end
 end

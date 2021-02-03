@@ -15,7 +15,7 @@ Tri = triangles; % convenient name
 vertice_num = size(vertices,1);
 
 for vertex = 1:vertice_num
-    neighbors{vertex,1} = []; % Initialize a cell array with empty array of neighbours
+    neighbors{vertex,1} = []; % Initialize a cell array with empty array of neighbors for the vertex
     for triangle = 1:triangles_num % loop through all triangles
         % check if the scanned vertex is within the triangle vertices
         if ismember(vertex,Tri(triangle,:)) 
@@ -33,27 +33,3 @@ end
 
 
 end
-
-%% Drafts
-% %vertice_num = size(vertices,1);
-% triangles_num = size(triangles,1); % Number of triangles
-% %P = vertices;
-% Tri = triangles; % convenient name
-% 
-% % neighbors = cell(triangles_num); % draft for the cell array
-% % implementation
-% neighbors = [];
-% 
-% for triangle = 1:triangles_num % loop through all triangles
-%     % check if the scanned vertex is within the triangle vertices
-%     if ismember(vertex,Tri(triangle,:)) 
-%         for ii = 1:3 % check each vertex of the current triangle
-%             % Check if the current vertex is not the same as the reference
-%             % vertex of the triangle and check if the vertex is not already
-%             % in the neighbors list
-%             if Tri(triangle,ii) ~= vertex && ~ismember(Tri(triangle,ii),neighbors)
-%                 neighbors(end+1) = Tri(triangle,ii);
-%             end
-%         end
-%     end
-% end
