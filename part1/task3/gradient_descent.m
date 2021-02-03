@@ -1,54 +1,36 @@
 function [x,NumIter] = gradient_descent(multivar_f,...
     x, alpha, max_iter, toler, gradient_f,a)
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
+% [x,NumIter] = gradient_descent(multivar_f, x, alpha, max_iter, toler, ...
+% gradient_f,a)
+%
+% This function uses gradient descent algorithm showed in the lecture and 
+% outputs optimised function values.
+% Inputs:
+%   multivar_f      multivariate function handle
+%   x               initial x values to be optimised
+%   alpha           step size
+%   max_iter        maximum number of iterations
+%   toler           tolerance on change between old and subsequent x value
+%   gradient_f      gradient function handle
+%   a               multivariate function polynomial coefficients
+% Output:
+%   x               optimised function variable
+%   NumIter         how many iterations it took to get to the optimum
 
-%% Main algorithm
-
-NumIter = 1;
-delta = toler+1;
+NumIter = 1; % initial value
+delta = toler+1; % delta slightly bigger than the tolerance
+J_history = [];
 
 while NumIter <= max_iter && delta >= toler
-    grad = gradient_f(multivar_f,a,x);
-    x_new = x - alpha*grad;
-    NumIter = NumIter + 1;
-    delta = (multivar_f(a,x)-multivar_f(a,x_new));
-    x = x_new;
+    grad = gradient_f(multivar_f,a,x); % derivative
+    x_new = x - alpha*grad; % learn according to the derivative and step
+    NumIter = NumIter + 1; % increase counter
+    delta = (multivar_f(a,x)-multivar_f(a,x_new)); % compute difference that will be compared with tolerance
+    x = x_new; % update the value
+    % Verification method from Andrew NG machine learning course on Coursera
+    % Register and visualise x value and functions history
+    J_history(NumIter) = multivar_f(a,x);
 end
+plot(J_history); title('Solution verification')
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-%% Trash
-% Feature normalisation
-% mu = mean(init_val);
-% sigma = std(init_val);
-% feat_num = size(init_val,2);
-% % Following loop normalises values for each feature
-% 
-% for iter=1:feat_num
-%     init_val(:,iter) = (init_val(:,iter)-mu(:,iter))./sigma(:,iter);
-% end
-% 
-% X_norm = init_val;
-% m = length(y); % number of training examples
-% 
-% for iter = 1:max_iter
-%     delta = gradient_f;
-%     theta = theta - alpha*delta;
-% end
-% 
-% 
-% end
-% 
+end
