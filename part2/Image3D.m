@@ -1,24 +1,23 @@
 classdef Image3D
-    %UNTITLED Summary of this class goes here
-    %   Detailed explanation goes here
+    % Stores intensity and voxel dimensions
     
     properties
-
-        
+        vol % image
+        voxdims % dimensions
     end
     
     methods
-        function obj = untitled(inputArg1,inputArg2)
-            %UNTITLED Construct an instance of this class
-            %   Detailed explanation goes here
-            obj.Property1 = inputArg1 + inputArg2;
+        function obj = Image3D(vol,voxdims)
+            %obj = Image3D(vol,voxdims)
+            %   Constructs Image3D object with properties vol and voxdims
+            %   to contain the intensities and the volume dimentions
+            % Inputs
+            %   vol         intensity values
+            %   voxdims     voxel dimensions
+            obj.vol = vol;
+            obj.voxdims = voxdims;
         end
         
-        function outputArg = method1(obj,inputArg)
-            %METHOD1 Summary of this method goes here
-            %   Detailed explanation goes here
-            outputArg = obj.Property1 + inputArg;
-        end
     end
 end
 
